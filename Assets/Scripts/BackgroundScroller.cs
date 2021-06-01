@@ -14,6 +14,6 @@ public class BackgroundScroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        renderer.material.mainTextureOffset = new Vector2(0f,(speed * Time.time) % 1);
+        renderer.material.mainTextureOffset = new Vector2((speed * Time.time) % 1, 0f);
     }
 }
