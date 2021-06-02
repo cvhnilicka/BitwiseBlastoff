@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 static class Content 
 {
@@ -25,14 +26,56 @@ static class Content
         new Question("F OR F = []","F OR F = F", "F", "T", "", "F"),
 
 
+        // XOR
+        new Question("T XOR T = []", "T XOR T = F", "F", "T","","F"),
+        new Question("F XOR F = []", "F XOR F = F", "F", "T","","F"),
+        new Question("F XOR T = []", "F XOR T = T", "T", "T","","F"),
+        new Question("T XOR F = []", "T XOR F = F", "T", "T","","F"),
+
+        // NAND
+        new Question("F NAND F = []","F NAND F = T", "T", "T", "", "F"),
+        new Question("T NAND F = []","T NAND F = T", "T", "T", "", "F"),
+        new Question("F NAND T = []","F NAND T = T", "T", "T", "", "F"),
+        new Question("T NAND T = []","T NAND T = F", "F", "T", "", "F"),
+
+        // NOR
+        new Question("F NOR F = []", "F NOR F = T", "T", "T","","F"),
+        new Question("F NOR T = []", "F NOR T = F", "F", "T","","F"),
+        new Question("T NOR F = []", "T NOR F = F", "F", "T","","F"),
+        new Question("T NOR T = []", "T NOR T = F", "F", "T","","F"),
+
+        // XNOR
+        new Question("F XNOR F = []", "F XNOR F = T", "T", "T", "","F"),
+        new Question("T XNOR T = []", "T XNOR T = T", "T", "T", "","F"),
+        new Question("F XNOR T = []", "F XNOR T = F", "F", "T", "","F"),
+        new Question("T XNOR F = []", "T XNOR F = F", "F", "T", "","F"),
     };
 
 
     private static int currentIndex = 0;
 
-    public static void AdvanceIndex() { currentIndex += 1; }
+    public static void AdvanceIndex() {
+        currentIndex += 1;
+        if (currentIndex > questions.Count)
+        {
+            currentIndex = 0;
+            ShuffleDeck();
+        }
+    }
     public static int GetCurrentIndex() { return currentIndex; }
 
+
+    public static void ShuffleDeck()
+    {
+        for(int i = 0; i < questions.Count; i++)
+        {
+            Question temp = questions[i];
+            Random rn = new Random();
+            int randomIndex = rn.Next(i, questions.Count);
+            questions[i] = questions[randomIndex];
+            questions[randomIndex] = temp;
+        }
+    }
 
 }
 

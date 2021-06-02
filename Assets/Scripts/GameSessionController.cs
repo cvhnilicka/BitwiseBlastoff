@@ -30,6 +30,7 @@ public class GameSessionController : MonoBehaviour
     {
         expressionController = gameUI.GetComponentInChildren<ExpressionController>();
         dropZone = gameUI.GetComponentInChildren<ItemDropZone>();
+        Content.ShuffleDeck();
         foreach (DragNDrop obj in gameUI.GetComponentsInChildren<DragNDrop>())
         {
             if (obj.name == "Left") { left = obj;  }
