@@ -15,7 +15,6 @@ public class ExpressionController : MonoBehaviour
 
     public void SetExpression(string expression)
     {
-        Debug.Log("Expression: " + expression);
         this.expressionText.text = expression;
     }
 }

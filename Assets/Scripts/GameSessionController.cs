@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GameSessionController : MonoBehaviour
 {
     public GameObject gameUI;
+    public Text scoreText;
+    private int curScore;
     private ExpressionController expressionController;
 
     private DragNDrop left;
@@ -38,6 +40,7 @@ public class GameSessionController : MonoBehaviour
     void Start()
     {
         SetNewQuestion(Content.GetCurrentIndex());
+        curScore = 0;
     }
 
     void SetNewQuestion(int index)
@@ -67,15 +70,25 @@ public class GameSessionController : MonoBehaviour
         }
     }
 
+    void AddScore()
+    {
 
+    }
+
+    /*
+     * Timers 
+     * **/
     void Timers()
     {
-        if (questionTimer > 0 )
+        if (questionTimer > 0)
         {
             questionTimer -= Time.deltaTime;
         }
     }
 
+    /*
+     * Controls the percentage of the visual timer bar 
+     * **/
     void TimerUIControl()
     {
         timerUI.fillAmount = (questionTimer / questionTime);

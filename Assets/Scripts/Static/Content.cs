@@ -6,28 +6,6 @@ static class Content
     public static string Answer = "AND";
     public static string PossibleAnswers = "OR,AND,XOR";
 
-    public static Dictionary<string, Question> expressions = new Dictionary<string, Question>()
-    {
-        // AND SECTION
-        { "T[]T=T", new Question("T[]T=T","T AND T = T", "AND", "NAND", "XOR", "AND") },
-        // truth table section
-        { "T AND F = []", new Question("T AND F = []","T AND F = F", "F", "T", "", "F") },
-        { "F AND T = []", new Question("F AND T = []","F AND T = F", "F", "T", "", "F") },
-        { "T AND T = []", new Question("T AND T = []","T AND T = T", "T", "T", "", "F") },
-        { "F AND F = []", new Question("F AND F = []","F AND F = F", "F", "T", "", "F") },
-
-
-
-
-
-
-
-
-
-        { "T[]F=T", new Question("T[]T=T","T OR T = T", "OR", "OR", "NAND", "AND") },
-
-    };
-
     public static List<Question> questions = new List<Question>()
     {
         // AND Section
