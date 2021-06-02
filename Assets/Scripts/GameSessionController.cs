@@ -23,6 +23,8 @@ public class GameSessionController : MonoBehaviour
 
     public Image timerUI;
 
+    private bool gameOn;
+
 
     private void Awake()
     {
@@ -41,6 +43,7 @@ public class GameSessionController : MonoBehaviour
     {
         SetNewQuestion(Content.GetCurrentIndex());
         curScore = 0;
+        gameOn = true;
     }
 
     void SetNewQuestion(int index)
@@ -57,13 +60,17 @@ public class GameSessionController : MonoBehaviour
     {
         Timers();
         TimerUIControl();
-        QuestionFlow();
+        if (gameOn)
+        {
+            QuestionFlow();
+        }
     }
 
     private void QuestionFlow()
     {
         if (dropZone.GetCorrectlyAnswered())
         {
+            AddScore();
             dropZone.ResetCorrectlyAnswered();
             Content.AdvanceIndex();
             SetNewQuestion(Content.GetCurrentIndex());
@@ -72,7 +79,9 @@ public class GameSessionController : MonoBehaviour
 
     void AddScore()
     {
-
+        //curScore += (int)Mathf.Ceil(Time.deltaTime * 100);
+        curScore += (int)Mathf.Ceil(questionTimer / questionTime * 100);
+        scoreText.text = "Score: " + curScore.ToString();
     }
 
     /*
@@ -83,6 +92,10 @@ public class GameSessionController : MonoBehaviour
         if (questionTimer > 0)
         {
             questionTimer -= Time.deltaTime;
+        }
+        else
+        {
+            gameOn = false;
         }
     }
 
