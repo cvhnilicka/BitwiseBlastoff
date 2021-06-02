@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameSessionController : MonoBehaviour
 {
@@ -13,7 +14,13 @@ public class GameSessionController : MonoBehaviour
 
     private ItemDropZone dropZone;
 
-    //public GameObjec
+
+
+    private float questionTimer;
+    private float questionTime = 3f;
+
+    public Image timerUI;
+
 
     private void Awake()
     {
@@ -39,10 +46,18 @@ public class GameSessionController : MonoBehaviour
         left.SetAnswerText(Content.questions[index].options[0]);
         mid.SetAnswerText(Content.questions[index].options[1]);
         right.SetAnswerText(Content.questions[index].options[2]);
+        questionTimer = questionTime;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        Timers();
+        TimerUIControl();
+        QuestionFlow();
+    }
+
+    private void QuestionFlow()
     {
         if (dropZone.GetCorrectlyAnswered())
         {
@@ -50,5 +65,20 @@ public class GameSessionController : MonoBehaviour
             Content.AdvanceIndex();
             SetNewQuestion(Content.GetCurrentIndex());
         }
+    }
+
+
+    void Timers()
+    {
+        if (questionTimer > 0 )
+        {
+            questionTimer -= Time.deltaTime;
+        }
+    }
+
+    void TimerUIControl()
+    {
+        timerUI.fillAmount = (questionTimer / questionTime);
+
     }
 }
