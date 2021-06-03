@@ -19,4 +19,9 @@ public class ButtonController : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void LoadInstructions()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
