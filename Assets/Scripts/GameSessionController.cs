@@ -7,6 +7,7 @@ public class GameSessionController : MonoBehaviour
 {
     public GameObject gameUI;
     public Text scoreText;
+    public GameOverController gameOver;
     private int curScore;
     private ExpressionController expressionController;
 
@@ -64,6 +65,12 @@ public class GameSessionController : MonoBehaviour
         if (gameOn)
         {
             QuestionFlow();
+        }
+        else
+        {
+            gameUI.gameObject.SetActive(false);
+            gameOver.ActivateGameOver();
+            gameOver.SetFinalScore(curScore);
         }
     }
 
